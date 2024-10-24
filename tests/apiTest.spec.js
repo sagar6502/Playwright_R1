@@ -10,9 +10,8 @@ function generateRandomNumber(){
     return data;
 }
 
-test.only("get test", async ({page}) => {
+test("get test", async ({page}) => {
    const data = generateRandomNumber();
-    console.log(data);
     const val = fetch(baseURI+data)
         .then(res=>res.json())
         .then(json=>console.log(json));
@@ -22,8 +21,6 @@ test.only("get test", async ({page}) => {
 
 test("POST test", async ({page}) => {
    
-    const data = parseInt(Math.random()*10);
-    console.log(data);
     const val =fetch('https://fakestoreapi.com/products',{
         method:"POST",
         body:JSON.stringify(
@@ -34,7 +31,7 @@ test("POST test", async ({page}) => {
                 image: 'https://i.pravatar.cc',
                 category: 'electronic'
             }
-        )
+        ),
     })
         .then(res=>res.json())
         .then(json=>console.log(json))
@@ -43,13 +40,12 @@ test("POST test", async ({page}) => {
 
 test("PUT test", async ({page}) => {
    
-    console.log(Math.random()*10);
     const val = fetch('https://fakestoreapi.com/products/7',{
         method:"PUT",
         body:JSON.stringify(
             {
                 title: 'test product',
-                price: 13.5,
+                price: generateRandomNumber(),
                 description: 'lorem ipsum set',
                 image: 'https://i.pravatar.cc',
                 category: 'electronic'
